@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState } from 'react';
@@ -13,7 +14,7 @@ export default function Home() {
   const [publico, setPublico] = useState('');
   const [prompt, setPrompt] = useState('');
   const [modalAberto, setModalAberto] = useState(null);
-  const [promptManual, setPromptManual] = useState(''); // NOVO
+  const [promptManual, setPromptManual] = useState('');
 
   const gerarPrompt = () => {
     const partes = [];
@@ -33,233 +34,380 @@ export default function Home() {
     setPrompt(`${inicio}\n${partes.join('\n')}`);
   };
 
-
   return (
-    <main className="max-w-xl mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-6">Prompt Maker</h1>
-
-      {/* PERSONALIDADE */}
-      <div className="mb-4">
-        <label className="font-semibold block mb-1">
-          Prompt personalizado (opcional)
-        </label>
-        <textarea
-          className="w-full p-2 border rounded mb-2"
-          rows={3}
-          placeholder='Digite aqui um texto inicial para o prompt, se desejar...'
-          value={promptManual}
-          onChange={e => setPromptManual(e.target.value)}
-        />
-        <label className="font-semibold block mb-1">
-          1) Personalidade
-          <button
-            onClick={() => setModalAberto('personalidade')}
-            className="ml-2 text-blue-600 hover:text-blue-800 font-bold"
-            title="O que é isso?"
-          >
-            ?
-          </button>
-        </label>
-        <select
-          className="w-full p-2 border rounded"
-          value={personalidade}
-          onChange={(e) => setPersonalidade(e.target.value)}
-        >
-          <option value="">Selecione...</option>
-          <option value="Casual">Casual</option>
-          <option value="Formal">Formal</option>
-          <option value="Humorístico">Humorístico</option>
-          <option value="Sério">Sério</option>
-          <option value="Impessoal">Impessoal</option>
-          <option value="Empático">Empático</option>
-          <option value="Didático">Didático</option>
-          <option value="Cínico">Cínico</option>
-          <option value="Otimista">Otimista</option>
-          <option value="Pessimista">Pessimista</option>
-          <option value="Animado">Animado</option>
-          <option value="Reservado">Reservado</option>
-          <option value="Enérgico">Enérgico</option>
-          <option value="Agressivo">Agressivo</option>
-          <option value="Passivo">Passivo</option>
-          <option value="Encorajador">Encorajador</option>
-          <option value="Crítico">Crítico</option>
-          <option value="Curioso">Curioso</option>
-          <option value="Afetuoso">Afetuoso</option>
-          <option value="Apático">Apático</option>
-        </select>
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
+      {/* Header with animated background */}
+      <div className="relative overflow-hidden bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 py-16 px-4">
+        <div className="absolute inset-0 bg-black opacity-10"></div>
+        <div className="relative z-10 text-center">
+          <h1 className="text-5xl md:text-7xl font-black text-white mb-4 tracking-tight">
+            ✨ Prompt Maker
+          </h1>
+          <p className="text-xl md:text-2xl text-white/90 font-medium max-w-2xl mx-auto">
+            Crie prompts perfeitos para IA de forma fácil e intuitiva
+          </p>
+        </div>
+        {/* Decorative elements */}
+        <div className="absolute top-10 left-10 w-20 h-20 bg-pink-300/20 rounded-full blur-xl"></div>
+        <div className="absolute bottom-10 right-10 w-32 h-32 bg-blue-300/20 rounded-full blur-xl"></div>
       </div>
 
-      {/* TOM */}
-      <div className="mb-4">
-        <label className="font-semibold block mb-1">
-          2) Tom
-          <button
-            onClick={() => setModalAberto('tom')}
-            className="ml-2 text-blue-600 hover:text-blue-800 font-bold"
-            title="O que é isso?"
-          >
-            ?
-          </button>
-        </label>
-        <select
-          className="w-full p-2 border rounded"
-          value={tom}
-          onChange={(e) => setTom(e.target.value)}
-        >
-          <option value="">Selecione...</option>
-          <option value="Alegre">Alegre</option>
-          <option value="Melancólico">Melancólico</option>
-          <option value="Irônico">Irônico</option>
-          <option value="Sarcástico">Sarcástico</option>
-          <option value="Respeitoso">Respeitoso</option>
-          <option value="Desrespeitoso">Desrespeitoso</option>
-          <option value="Ousado">Ousado</option>
-          <option value="Humilde">Humilde</option>
-          <option value="Ansioso">Ansioso</option>
-          <option value="Calmo">Calmo</option>
-          <option value="Enfático">Enfático</option>
-          <option value="Indiferente">Indiferente</option>
-          <option value="Desafiador">Desafiador</option>
-          <option value="Inspirador">Inspirador</option>
-          <option value="Medroso">Medroso</option>
-          <option value="Zangado">Zangado</option>
-          <option value="Amigável">Amigável</option>
-          <option value="Hostil">Hostil</option>
-          <option value="Condescendente">Condescendente</option>
-          <option value="Fascinado">Fascinado</option>
-        </select>
-      </div>
+      <main className="max-w-4xl mx-auto px-6 py-12">
+        <div className="bg-white/95 backdrop-blur-sm rounded-3xl shadow-2xl p-8 md:p-12">
+          
+          {/* Custom Prompt Section */}
+          <div className="mb-8">
+            <label className="text-2xl font-bold text-gray-800 block mb-4 flex items-center">
+              <span className="bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
+                💭 Prompt Personalizado
+              </span>
+              <span className="text-sm font-normal text-gray-500 ml-3">(opcional)</span>
+            </label>
+            <textarea
+              className="w-full p-6 border-2 border-purple-200 rounded-2xl focus:border-purple-500 focus:ring-4 focus:ring-purple-100 transition-all duration-200 text-lg resize-none"
+              rows={4}
+              placeholder="Digite aqui um texto inicial para o prompt, se desejar..."
+              value={promptManual}
+              onChange={e => setPromptManual(e.target.value)}
+            />
+          </div>
 
-      {/* LINGUAGEM */}
-      <div className="mb-4">
-        <label className="font-semibold block mb-1">
-          3) Linguagem ou Vocabulário
-          <button
-            onClick={() => setModalAberto('linguagem')}
-            className="ml-2 text-blue-600 hover:text-blue-800 font-bold"
-            title="O que é isso?"
-          >
-            ?
-          </button>
-        </label>
-        <select
-          className="w-full p-2 border rounded"
-          value={linguagem}
-          onChange={(e) => setLinguagem(e.target.value)}
-        >
-          <option value="">Selecione...</option>
-          <option value="Técnico">Técnico</option>
-          <option value="Acadêmico">Acadêmico</option>
-          <option value="Coloquial">Coloquial</option>
-          <option value="Arcaico">Arcaico</option>
-          <option value="Moderno">Moderno</option>
-          <option value="Poético">Poético</option>
-          <option value="Jornalístico">Jornalístico</option>
-          <option value="Diplomático">Diplomático</option>
-          <option value="Burocrático">Burocrático</option>
-          <option value="Profissional">Profissional</option>
-          <option value="Vulgar">Vulgar</option>
-          <option value="Legal">Legal</option>
-          <option value="Médico">Médico</option>
-          <option value="Político">Político</option>
-          <option value="Esportivo">Esportivo</option>
-          <option value="Publicitário">Publicitário</option>
-          <option value="Literário">Literário</option>
-          <option value="Informal">Informal</option>
-          <option value="Militar">Militar</option>
-          <option value="Cinematográfico">Cinematográfico</option>
-        </select>
-      </div>
+          {/* Form Grid */}
+          <div className="grid md:grid-cols-2 gap-8 mb-10">
+            
+            {/* Personalidade */}
+            <div className="space-y-3">
+              <label className="text-xl font-bold text-gray-800 flex items-center gap-3">
+                <span className="bg-gradient-to-r from-pink-500 to-red-500 bg-clip-text text-transparent">
+                  🎭 Personalidade
+                </span>
+                <button
+                  onClick={() => setModalAberto('personalidade')}
+                  className="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-full flex items-center justify-center font-bold hover:scale-110 transition-transform duration-200"
+                  title="O que é isso?"
+                >
+                  ?
+                </button>
+              </label>
+              <select
+                className="w-full p-4 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:ring-4 focus:ring-purple-100 transition-all duration-200 text-lg bg-white"
+                value={personalidade}
+                onChange={(e) => setPersonalidade(e.target.value)}
+              >
+                <option value="">Selecione uma personalidade...</option>
+                <option value="Casual">Casual</option>
+                <option value="Formal">Formal</option>
+                <option value="Humorístico">Humorístico</option>
+                <option value="Sério">Sério</option>
+                <option value="Impessoal">Impessoal</option>
+                <option value="Empático">Empático</option>
+                <option value="Didático">Didático</option>
+                <option value="Cínico">Cínico</option>
+                <option value="Otimista">Otimista</option>
+                <option value="Pessimista">Pessimista</option>
+                <option value="Animado">Animado</option>
+                <option value="Reservado">Reservado</option>
+                <option value="Enérgico">Enérgico</option>
+                <option value="Agressivo">Agressivo</option>
+                <option value="Passivo">Passivo</option>
+                <option value="Encorajador">Encorajador</option>
+                <option value="Crítico">Crítico</option>
+                <option value="Curioso">Curioso</option>
+                <option value="Afetuoso">Afetuoso</option>
+                <option value="Apático">Apático</option>
+              </select>
+            </div>
 
-      {/* ESTILO */}
-      <div className="mb-4">
-        <label className="font-semibold block mb-1">
-          4) Estilo
-          <button
-            onClick={() => setModalAberto('estilo')}
-            className="ml-2 text-blue-600 hover:text-blue-800 font-bold"
-            title="O que é isso?"
-          >
-            ?
-          </button>
-        </label>
-        <select
-          className="w-full p-2 border rounded"
-          value={estilo}
-          onChange={(e) => setEstilo(e.target.value)}
-        >
-          <option value="">Selecione...</option>
-          <option value="Descritivo">Descritivo</option>
-          <option value="Persuasivo">Persuasivo</option>
-          <option value="Narrativo">Narrativo</option>
-          <option value="Expositivo">Expositivo</option>
-          <option value="Epistolar">Epistolar</option>
-          <option value="Dramático">Dramático</option>
-          <option value="Lírico">Lírico</option>
-          <option value="Fluxo de consciência">Fluxo de consciência</option>
-          <option value="Diálogo">Diálogo</option>
-          <option value="Monólogo">Monólogo</option>
-          <option value="Rimas">Rimas</option>
-          <option value="Haiku">Haiku</option>
-          <option value="Paródia">Paródia</option>
-          <option value="Minimalista">Minimalista</option>
-          <option value="Barroco">Barroco</option>
-          <option value="Abstrato">Abstrato</option>
-          <option value="Realista">Realista</option>
-          <option value="Alegórico">Alegórico</option>
-          <option value="Sátira">Sátira</option>
-          <option value="Simbólico">Simbólico</option>
-        </select>
-      </div>
+            {/* Tom */}
+            <div className="space-y-3">
+              <label className="text-xl font-bold text-gray-800 flex items-center gap-3">
+                <span className="bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
+                  🎵 Tom
+                </span>
+                <button
+                  onClick={() => setModalAberto('tom')}
+                  className="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full flex items-center justify-center font-bold hover:scale-110 transition-transform duration-200"
+                  title="O que é isso?"
+                >
+                  ?
+                </button>
+              </label>
+              <select
+                className="w-full p-4 border-2 border-blue-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 text-lg bg-white"
+                value={tom}
+                onChange={(e) => setTom(e.target.value)}
+              >
+                <option value="">Selecione um tom...</option>
+                <option value="Alegre">Alegre</option>
+                <option value="Melancólico">Melancólico</option>
+                <option value="Irônico">Irônico</option>
+                <option value="Sarcástico">Sarcástico</option>
+                <option value="Respeitoso">Respeitoso</option>
+                <option value="Desrespeitoso">Desrespeitoso</option>
+                <option value="Ousado">Ousado</option>
+                <option value="Humilde">Humilde</option>
+                <option value="Ansioso">Ansioso</option>
+                <option value="Calmo">Calmo</option>
+                <option value="Enfático">Enfático</option>
+                <option value="Indiferente">Indiferente</option>
+                <option value="Desafiador">Desafiador</option>
+                <option value="Inspirador">Inspirador</option>
+                <option value="Medroso">Medroso</option>
+                <option value="Zangado">Zangado</option>
+                <option value="Amigável">Amigável</option>
+                <option value="Hostil">Hostil</option>
+                <option value="Condescendente">Condescendente</option>
+                <option value="Fascinado">Fascinado</option>
+              </select>
+            </div>
 
-      {/* PROPÓSITO */}
-      <div className="mb-4">
-        <label className="font-semibold block mb-1">
-          5) Propósito
-          <button
-            onClick={() => setModalAberto('proposito')}
-            className="ml-2 text-blue-600 hover:text-blue-800 font-bold"
-            title="O que é isso?"
-          >
-            ?
-          </button>
-        </label>
-        <select
-          className="w-full p-2 border rounded"
-          value={proposito}
-          onChange={(e) => setProposito(e.target.value)}
-        >
-          <option value="">Selecione...</option>
-          <option value="Informar">Informar</option>
-          <option value="Persuadir">Persuadir</option>
-          <option value="Entreter">Entreter</option>
-          <option value="Expressar opinião">Expressar opinião</option>
-          <option value="Provocar reflexão">Provocar reflexão</option>
-          <option value="Ensinar">Ensinar</option>
-          <option value="Criticar">Criticar</option>
-          <option value="Explorar">Explorar</option>
-          <option value="Descobrir">Descobrir</option>
-          <option value="Denunciar">Denunciar</option>
-          <option value="Exaltar">Exaltar</option>
-          <option value="Questionar">Questionar</option>
-          <option value="Motivar">Motivar</option>
-          <option value="Instruir">Instruir</option>
-          <option value="Descrever">Descrever</option>
-          <option value="Anunciar">Anunciar</option>
-          <option value="Evocar emoções">Evocar emoções</option>
-        </select>
-      </div>
+            {/* Linguagem */}
+            <div className="space-y-3">
+              <label className="text-xl font-bold text-gray-800 flex items-center gap-3">
+                <span className="bg-gradient-to-r from-green-500 to-emerald-500 bg-clip-text text-transparent">
+                  💬 Linguagem
+                </span>
+                <button
+                  onClick={() => setModalAberto('linguagem')}
+                  className="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-full flex items-center justify-center font-bold hover:scale-110 transition-transform duration-200"
+                  title="O que é isso?"
+                >
+                  ?
+                </button>
+              </label>
+              <select
+                className="w-full p-4 border-2 border-green-200 rounded-xl focus:border-green-500 focus:ring-4 focus:ring-green-100 transition-all duration-200 text-lg bg-white"
+                value={linguagem}
+                onChange={(e) => setLinguagem(e.target.value)}
+              >
+                <option value="">Selecione uma linguagem...</option>
+                <option value="Técnico">Técnico</option>
+                <option value="Acadêmico">Acadêmico</option>
+                <option value="Coloquial">Coloquial</option>
+                <option value="Arcaico">Arcaico</option>
+                <option value="Moderno">Moderno</option>
+                <option value="Poético">Poético</option>
+                <option value="Jornalístico">Jornalístico</option>
+                <option value="Diplomático">Diplomático</option>
+                <option value="Burocrático">Burocrático</option>
+                <option value="Profissional">Profissional</option>
+                <option value="Vulgar">Vulgar</option>
+                <option value="Legal">Legal</option>
+                <option value="Médico">Médico</option>
+                <option value="Político">Político</option>
+                <option value="Esportivo">Esportivo</option>
+                <option value="Publicitário">Publicitário</option>
+                <option value="Literário">Literário</option>
+                <option value="Informal">Informal</option>
+                <option value="Militar">Militar</option>
+                <option value="Cinematográfico">Cinematográfico</option>
+              </select>
+            </div>
 
-      {/* MODAL */}
+            {/* Estilo */}
+            <div className="space-y-3">
+              <label className="text-xl font-bold text-gray-800 flex items-center gap-3">
+                <span className="bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent">
+                  🎨 Estilo
+                </span>
+                <button
+                  onClick={() => setModalAberto('estilo')}
+                  className="w-8 h-8 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-full flex items-center justify-center font-bold hover:scale-110 transition-transform duration-200"
+                  title="O que é isso?"
+                >
+                  ?
+                </button>
+              </label>
+              <select
+                className="w-full p-4 border-2 border-yellow-200 rounded-xl focus:border-yellow-500 focus:ring-4 focus:ring-yellow-100 transition-all duration-200 text-lg bg-white"
+                value={estilo}
+                onChange={(e) => setEstilo(e.target.value)}
+              >
+                <option value="">Selecione um estilo...</option>
+                <option value="Descritivo">Descritivo</option>
+                <option value="Persuasivo">Persuasivo</option>
+                <option value="Narrativo">Narrativo</option>
+                <option value="Expositivo">Expositivo</option>
+                <option value="Epistolar">Epistolar</option>
+                <option value="Dramático">Dramático</option>
+                <option value="Lírico">Lírico</option>
+                <option value="Fluxo de consciência">Fluxo de consciência</option>
+                <option value="Diálogo">Diálogo</option>
+                <option value="Monólogo">Monólogo</option>
+                <option value="Rimas">Rimas</option>
+                <option value="Haiku">Haiku</option>
+                <option value="Paródia">Paródia</option>
+                <option value="Minimalista">Minimalista</option>
+                <option value="Barroco">Barroco</option>
+                <option value="Abstrato">Abstrato</option>
+                <option value="Realista">Realista</option>
+                <option value="Alegórico">Alegórico</option>
+                <option value="Sátira">Sátira</option>
+                <option value="Simbólico">Simbólico</option>
+              </select>
+            </div>
+
+            {/* Propósito */}
+            <div className="space-y-3">
+              <label className="text-xl font-bold text-gray-800 flex items-center gap-3">
+                <span className="bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
+                  🎯 Propósito
+                </span>
+                <button
+                  onClick={() => setModalAberto('proposito')}
+                  className="w-8 h-8 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-full flex items-center justify-center font-bold hover:scale-110 transition-transform duration-200"
+                  title="O que é isso?"
+                >
+                  ?
+                </button>
+              </label>
+              <select
+                className="w-full p-4 border-2 border-indigo-200 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all duration-200 text-lg bg-white"
+                value={proposito}
+                onChange={(e) => setProposito(e.target.value)}
+              >
+                <option value="">Selecione um propósito...</option>
+                <option value="Informar">Informar</option>
+                <option value="Persuadir">Persuadir</option>
+                <option value="Entreter">Entreter</option>
+                <option value="Expressar opinião">Expressar opinião</option>
+                <option value="Provocar reflexão">Provocar reflexão</option>
+                <option value="Ensinar">Ensinar</option>
+                <option value="Criticar">Criticar</option>
+                <option value="Explorar">Explorar</option>
+                <option value="Descobrir">Descobrir</option>
+                <option value="Denunciar">Denunciar</option>
+                <option value="Exaltar">Exaltar</option>
+                <option value="Questionar">Questionar</option>
+                <option value="Motivar">Motivar</option>
+                <option value="Instruir">Instruir</option>
+                <option value="Descrever">Descrever</option>
+                <option value="Anunciar">Anunciar</option>
+                <option value="Evocar emoções">Evocar emoções</option>
+              </select>
+            </div>
+
+            {/* Formato */}
+            <div className="space-y-3">
+              <label className="text-xl font-bold text-gray-800 flex items-center gap-3">
+                <span className="bg-gradient-to-r from-teal-500 to-cyan-500 bg-clip-text text-transparent">
+                  📋 Formato
+                </span>
+              </label>
+              <select
+                className="w-full p-4 border-2 border-teal-200 rounded-xl focus:border-teal-500 focus:ring-4 focus:ring-teal-100 transition-all duration-200 text-lg bg-white"
+                value={formato}
+                onChange={(e) => setFormato(e.target.value)}
+              >
+                <option value="">Selecione um formato...</option>
+                <option value="Parágrafo">Parágrafo</option>
+                <option value="Lista">Lista</option>
+                <option value="Tópicos">Tópicos</option>
+                <option value="Passos numerados">Passos numerados</option>
+                <option value="Tabela">Tabela</option>
+                <option value="Resumo executivo">Resumo executivo</option>
+                <option value="Com exemplos">Com exemplos</option>
+                <option value="Comparação">Comparação</option>
+                <option value="Tutorial">Tutorial</option>
+                <option value="Relatório">Relatório</option>
+              </select>
+            </div>
+
+            {/* Detalhe */}
+            <div className="space-y-3">
+              <label className="text-xl font-bold text-gray-800 flex items-center gap-3">
+                <span className="bg-gradient-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent">
+                  🔍 Nível de Detalhe
+                </span>
+              </label>
+              <select
+                className="w-full p-4 border-2 border-rose-200 rounded-xl focus:border-rose-500 focus:ring-4 focus:ring-rose-100 transition-all duration-200 text-lg bg-white"
+                value={detalhe}
+                onChange={(e) => setDetalhe(e.target.value)}
+              >
+                <option value="">Selecione o nível...</option>
+                <option value="Básico">Básico</option>
+                <option value="Intermediário">Intermediário</option>
+                <option value="Avançado">Avançado</option>
+                <option value="Especialista">Especialista</option>
+                <option value="Superficial">Superficial</option>
+                <option value="Profundo">Profundo</option>
+                <option value="Completo">Completo</option>
+                <option value="Resumido">Resumido</option>
+              </select>
+            </div>
+
+            {/* Público */}
+            <div className="space-y-3">
+              <label className="text-xl font-bold text-gray-800 flex items-center gap-3">
+                <span className="bg-gradient-to-r from-violet-500 to-purple-500 bg-clip-text text-transparent">
+                  👥 Público-Alvo
+                </span>
+              </label>
+              <select
+                className="w-full p-4 border-2 border-violet-200 rounded-xl focus:border-violet-500 focus:ring-4 focus:ring-violet-100 transition-all duration-200 text-lg bg-white"
+                value={publico}
+                onChange={(e) => setPublico(e.target.value)}
+              >
+                <option value="">Selecione o público...</option>
+                <option value="Público geral">Público geral</option>
+                <option value="Iniciantes">Iniciantes</option>
+                <option value="Experientes">Experientes</option>
+                <option value="Estudantes">Estudantes</option>
+                <option value="Profissionais">Profissionais</option>
+                <option value="Crianças">Crianças</option>
+                <option value="Adolescentes">Adolescentes</option>
+                <option value="Adultos">Adultos</option>
+                <option value="Idosos">Idosos</option>
+                <option value="Especialistas">Especialistas</option>
+              </select>
+            </div>
+          </div>
+
+          {/* Generate Button */}
+          <div className="text-center mb-8">
+            <button
+              className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white text-2xl font-black px-12 py-6 rounded-2xl hover:scale-105 hover:shadow-2xl transition-all duration-300 transform"
+              onClick={gerarPrompt}
+            >
+              ✨ Gerar Prompt Mágico ✨
+            </button>
+          </div>
+
+          {/* Generated Prompt Display */}
+          {prompt && (
+            <div className="bg-gradient-to-r from-emerald-50 to-cyan-50 border-2 border-emerald-200 rounded-2xl p-8 shadow-lg">
+              <h2 className="text-3xl font-black text-emerald-800 mb-6 flex items-center gap-3">
+                🚀 Seu Prompt Está Pronto!
+              </h2>
+              <div className="bg-white rounded-xl p-6 shadow-inner border border-emerald-100">
+                <pre className="text-gray-800 text-lg leading-relaxed whitespace-pre-wrap font-mono">{prompt}</pre>
+              </div>
+              <div className="mt-6 text-center">
+                <button
+                  onClick={() => navigator.clipboard.writeText(prompt)}
+                  className="bg-emerald-500 text-white font-bold px-6 py-3 rounded-xl hover:bg-emerald-600 transition-colors duration-200"
+                >
+                  📋 Copiar Prompt
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
+      </main>
+
+      {/* Modal */}
       {modalAberto && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 max-w-lg w-full shadow-lg">
-            <h2 className="text-xl font-bold mb-4">
-              {modalAberto === 'personalidade' && 'O que é "Personalidade"?'}
-              {modalAberto === 'tom' && 'O que é "Tom"?'}
-              {modalAberto === 'linguagem' && 'O que é "Linguagem ou Vocabulário"?'}
+        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-3xl p-8 max-w-lg w-full shadow-2xl transform animate-pulse">
+            <h2 className="text-3xl font-black mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+              {modalAberto === 'personalidade' && '🎭 O que é "Personalidade"?'}
+              {modalAberto === 'tom' && '🎵 O que é "Tom"?'}
+              {modalAberto === 'linguagem' && '💬 O que é "Linguagem"?'}
+              {modalAberto === 'estilo' && '🎨 O que é "Estilo"?'}
+              {modalAberto === 'proposito' && '🎯 O que é "Propósito"?'}
             </h2>
-            <p className="mb-4 text-sm text-gray-700">
+            <p className="mb-6 text-lg text-gray-700 leading-relaxed">
               {modalAberto === 'personalidade' &&
                 'A personalidade se refere a elementos do caráter ou comportamento do escritor que podem surgir na escrita. Ela pode ser deduzida pelo uso da linguagem, pelas opiniões expressas, pela maneira como os tópicos são abordados e por vários outros fatores.'}
               {modalAberto === 'tom' &&
@@ -273,89 +421,13 @@ export default function Home() {
             </p>
             <button
               onClick={() => setModalAberto(null)}
-              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+              className="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold px-8 py-4 rounded-xl hover:scale-105 transition-all duration-200 w-full text-lg"
             >
-              Fechar
+              Entendi! 👍
             </button>
           </div>
         </div>
       )}
-
-      {/* OUTROS CAMPOS */}
-      <div className="mb-4">
-        <label className="font-semibold block mb-1">Formato de Resposta</label>
-        <select
-          className="w-full p-2 border rounded"
-          value={formato}
-          onChange={(e) => setFormato(e.target.value)}
-        >
-          <option value="">Selecione...</option>
-          <option value="Parágrafo">Parágrafo</option>
-          <option value="Lista">Lista</option>
-          <option value="Tópicos">Tópicos</option>
-          <option value="Passos numerados">Passos numerados</option>
-          <option value="Tabela">Tabela</option>
-          <option value="Resumo executivo">Resumo executivo</option>
-          <option value="Com exemplos">Com exemplos</option>
-          <option value="Comparação">Comparação</option>
-          <option value="Tutorial">Tutorial</option>
-          <option value="Relatório">Relatório</option>
-        </select>
-      </div>
-
-      <div className="mb-4">
-        <label className="font-semibold block mb-1">Nível de Detalhe</label>
-        <select
-          className="w-full p-2 border rounded"
-          value={detalhe}
-          onChange={(e) => setDetalhe(e.target.value)}
-        >
-          <option value="">Selecione...</option>
-          <option value="Básico">Básico</option>
-          <option value="Intermediário">Intermediário</option>
-          <option value="Avançado">Avançado</option>
-          <option value="Especialista">Especialista</option>
-          <option value="Superficial">Superficial</option>
-          <option value="Profundo">Profundo</option>
-          <option value="Completo">Completo</option>
-          <option value="Resumido">Resumido</option>
-        </select>
-      </div>
-
-      <div className="mb-4">
-        <label className="font-semibold block mb-1">Público-Alvo</label>
-        <select
-          className="w-full p-2 border rounded"
-          value={publico}
-          onChange={(e) => setPublico(e.target.value)}
-        >
-          <option value="">Selecione...</option>
-          <option value="Público geral">Público geral</option>
-          <option value="Iniciantes">Iniciantes</option>
-          <option value="Experientes">Experientes</option>
-          <option value="Estudantes">Estudantes</option>
-          <option value="Profissionais">Profissionais</option>
-          <option value="Crianças">Crianças</option>
-          <option value="Adolescentes">Adolescentes</option>
-          <option value="Adultos">Adultos</option>
-          <option value="Idosos">Idosos</option>
-          <option value="Especialistas">Especialistas</option>
-        </select>
-      </div>
-
-      <button
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-        onClick={gerarPrompt}
-      >
-        Gerar Prompt
-      </button>
-
-      {prompt && (
-        <div className="mt-6">
-          <h2 className="text-lg font-bold mb-2">Prompt Gerado:</h2>
-          <pre className="bg-gray-100 p-4 rounded whitespace-pre-wrap">{prompt}</pre>
-        </div>
-      )}
-    </main>
+    </div>
   );
 }
