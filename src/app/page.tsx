@@ -13,7 +13,7 @@ export default function Home() {
   const [detalhe, setDetalhe] = useState('');
   const [publico, setPublico] = useState('');
   const [prompt, setPrompt] = useState('');
-  const [modalAberto, setModalAberto] = useState(null);
+  const [modalAberto, setModalAberto] = useState<null | 'personalidade' | 'tom' | 'linguagem' | 'estilo' | 'proposito'>(null);
   const [promptManual, setPromptManual] = useState('');
 
   const gerarPrompt = () => {
