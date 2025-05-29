@@ -12,6 +12,7 @@ export default function Home() {
   const [formato, setFormato] = useState('');
   const [detalhe, setDetalhe] = useState('');
   const [publico, setPublico] = useState('');
+  const [numeroCaracteres, setNumeroCaracteres] = useState('100');
   const [prompt, setPrompt] = useState('');
   const [modalAberto, setModalAberto] = useState<null | 'personalidade' | 'tom' | 'linguagem' | 'estilo' | 'proposito'>(null);
   const [promptManual, setPromptManual] = useState('');
@@ -26,6 +27,7 @@ export default function Home() {
     if (formato) partes.push(`Formato de resposta: ${formato}`);
     if (detalhe) partes.push(`Nível de detalhe: ${detalhe}`);
     if (publico) partes.push(`Público-alvo: ${publico}`);
+    if (numeroCaracteres) partes.push(`Número máximo de caracteres: ${numeroCaracteres}`);
 
     const inicio = promptManual.trim()
       ? promptManual.trim()
@@ -361,6 +363,23 @@ export default function Home() {
                 <option value="Idosos">Idosos</option>
                 <option value="Especialistas">Especialistas</option>
               </select>
+            </div>
+
+            {/* Número de Caracteres */}
+            <div className="space-y-3">
+              <label className="text-xl font-bold text-gray-800 flex items-center gap-3">
+                <span className="bg-gradient-to-r from-[#1c57db] to-[#1b88d8] bg-clip-text text-transparent">
+                  🔢 Número de Caracteres
+                </span>
+              </label>
+              <input
+                type="number"
+                className="w-full p-4 border-2 border-[#1c57db]/30 rounded-xl focus:border-[#1c57db] focus:ring-4 focus:ring-[#1c57db]/20 transition-all duration-200 text-lg bg-white"
+                value={numeroCaracteres}
+                onChange={(e) => setNumeroCaracteres(e.target.value)}
+                placeholder="100"
+                min="1"
+              />
             </div>
           </div>
 
