@@ -35,9 +35,9 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900">
+    <div className="min-h-screen bg-gradient-to-br from-[#1c57db] via-[#1b88d8] to-[#16bbc1]">
       {/* Header with animated background */}
-      <div className="relative overflow-hidden bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 py-16 px-4">
+      <div className="relative overflow-hidden bg-gradient-to-r from-[#1b88d8] via-[#0cafe1] to-[#3ecfa6] py-16 px-4">
         <div className="absolute inset-0 bg-black opacity-10"></div>
         <div className="relative z-10 text-center">
           <h1 className="text-5xl md:text-7xl font-black text-white mb-4 tracking-tight">
@@ -48,8 +48,8 @@ export default function Home() {
           </p>
         </div>
         {/* Decorative elements */}
-        <div className="absolute top-10 left-10 w-20 h-20 bg-pink-300/20 rounded-full blur-xl"></div>
-        <div className="absolute bottom-10 right-10 w-32 h-32 bg-blue-300/20 rounded-full blur-xl"></div>
+        <div className="absolute top-10 left-10 w-20 h-20 bg-[#3ecfa6]/20 rounded-full blur-xl"></div>
+        <div className="absolute bottom-10 right-10 w-32 h-32 bg-[#16bbc1]/20 rounded-full blur-xl"></div>
       </div>
 
       <main className="max-w-4xl mx-auto px-6 py-12">
@@ -58,13 +58,13 @@ export default function Home() {
           {/* Custom Prompt Section */}
           <div className="mb-8">
             <label className="text-2xl font-bold text-gray-800 block mb-4 flex items-center">
-              <span className="bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-[#1b88d8] to-[#0cafe1] bg-clip-text text-transparent">
                 💭 Prompt Personalizado
               </span>
               <span className="text-sm font-normal text-gray-500 ml-3">(opcional)</span>
             </label>
             <textarea
-              className="w-full p-6 border-2 border-purple-200 rounded-2xl focus:border-purple-500 focus:ring-4 focus:ring-purple-100 transition-all duration-200 text-lg resize-none"
+              className="w-full p-6 border-2 border-[#3ecfa6]/30 rounded-2xl focus:border-[#16bbc1] focus:ring-4 focus:ring-[#3ecfa6]/20 transition-all duration-200 text-lg resize-none"
               rows={4}
               placeholder="Digite aqui um texto inicial para o prompt, se desejar..."
               value={promptManual}
@@ -78,19 +78,19 @@ export default function Home() {
             {/* Personalidade */}
             <div className="space-y-3">
               <label className="text-xl font-bold text-gray-800 flex items-center gap-3">
-                <span className="bg-gradient-to-r from-pink-500 to-red-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#1b88d8] to-[#0cafe1] bg-clip-text text-transparent">
                   🎭 Personalidade
                 </span>
                 <button
                   onClick={() => setModalAberto('personalidade')}
-                  className="w-8 h-8 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-full flex items-center justify-center font-bold hover:scale-110 transition-transform duration-200"
+                  className="w-8 h-8 bg-gradient-to-r from-[#1b88d8] to-[#0cafe1] text-white rounded-full flex items-center justify-center font-bold hover:scale-110 transition-transform duration-200"
                   title="O que é isso?"
                 >
                   ?
                 </button>
               </label>
               <select
-                className="w-full p-4 border-2 border-purple-200 rounded-xl focus:border-purple-500 focus:ring-4 focus:ring-purple-100 transition-all duration-200 text-lg bg-white"
+                className="w-full p-4 border-2 border-[#1b88d8]/30 rounded-xl focus:border-[#1b88d8] focus:ring-4 focus:ring-[#1b88d8]/20 transition-all duration-200 text-lg bg-white"
                 value={personalidade}
                 onChange={(e) => setPersonalidade(e.target.value)}
               >
@@ -121,19 +121,19 @@ export default function Home() {
             {/* Tom */}
             <div className="space-y-3">
               <label className="text-xl font-bold text-gray-800 flex items-center gap-3">
-                <span className="bg-gradient-to-r from-blue-500 to-cyan-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#0cafe1] to-[#3ecfa6] bg-clip-text text-transparent">
                   🎵 Tom
                 </span>
                 <button
                   onClick={() => setModalAberto('tom')}
-                  className="w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full flex items-center justify-center font-bold hover:scale-110 transition-transform duration-200"
+                  className="w-8 h-8 bg-gradient-to-r from-[#0cafe1] to-[#3ecfa6] text-white rounded-full flex items-center justify-center font-bold hover:scale-110 transition-transform duration-200"
                   title="O que é isso?"
                 >
                   ?
                 </button>
               </label>
               <select
-                className="w-full p-4 border-2 border-blue-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-200 text-lg bg-white"
+                className="w-full p-4 border-2 border-[#0cafe1]/30 rounded-xl focus:border-[#0cafe1] focus:ring-4 focus:ring-[#0cafe1]/20 transition-all duration-200 text-lg bg-white"
                 value={tom}
                 onChange={(e) => setTom(e.target.value)}
               >
@@ -164,19 +164,19 @@ export default function Home() {
             {/* Linguagem */}
             <div className="space-y-3">
               <label className="text-xl font-bold text-gray-800 flex items-center gap-3">
-                <span className="bg-gradient-to-r from-green-500 to-emerald-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#3ecfa6] to-[#16bbc1] bg-clip-text text-transparent">
                   💬 Linguagem
                 </span>
                 <button
                   onClick={() => setModalAberto('linguagem')}
-                  className="w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-full flex items-center justify-center font-bold hover:scale-110 transition-transform duration-200"
+                  className="w-8 h-8 bg-gradient-to-r from-[#3ecfa6] to-[#16bbc1] text-white rounded-full flex items-center justify-center font-bold hover:scale-110 transition-transform duration-200"
                   title="O que é isso?"
                 >
                   ?
                 </button>
               </label>
               <select
-                className="w-full p-4 border-2 border-green-200 rounded-xl focus:border-green-500 focus:ring-4 focus:ring-green-100 transition-all duration-200 text-lg bg-white"
+                className="w-full p-4 border-2 border-[#3ecfa6]/30 rounded-xl focus:border-[#3ecfa6] focus:ring-4 focus:ring-[#3ecfa6]/20 transition-all duration-200 text-lg bg-white"
                 value={linguagem}
                 onChange={(e) => setLinguagem(e.target.value)}
               >
@@ -207,19 +207,19 @@ export default function Home() {
             {/* Estilo */}
             <div className="space-y-3">
               <label className="text-xl font-bold text-gray-800 flex items-center gap-3">
-                <span className="bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#16bbc1] to-[#1c57db] bg-clip-text text-transparent">
                   🎨 Estilo
                 </span>
                 <button
                   onClick={() => setModalAberto('estilo')}
-                  className="w-8 h-8 bg-gradient-to-r from-yellow-500 to-orange-500 text-white rounded-full flex items-center justify-center font-bold hover:scale-110 transition-transform duration-200"
+                  className="w-8 h-8 bg-gradient-to-r from-[#16bbc1] to-[#1c57db] text-white rounded-full flex items-center justify-center font-bold hover:scale-110 transition-transform duration-200"
                   title="O que é isso?"
                 >
                   ?
                 </button>
               </label>
               <select
-                className="w-full p-4 border-2 border-yellow-200 rounded-xl focus:border-yellow-500 focus:ring-4 focus:ring-yellow-100 transition-all duration-200 text-lg bg-white"
+                className="w-full p-4 border-2 border-[#16bbc1]/30 rounded-xl focus:border-[#16bbc1] focus:ring-4 focus:ring-[#16bbc1]/20 transition-all duration-200 text-lg bg-white"
                 value={estilo}
                 onChange={(e) => setEstilo(e.target.value)}
               >
@@ -250,19 +250,19 @@ export default function Home() {
             {/* Propósito */}
             <div className="space-y-3">
               <label className="text-xl font-bold text-gray-800 flex items-center gap-3">
-                <span className="bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#1c57db] to-[#1b88d8] bg-clip-text text-transparent">
                   🎯 Propósito
                 </span>
                 <button
                   onClick={() => setModalAberto('proposito')}
-                  className="w-8 h-8 bg-gradient-to-r from-indigo-500 to-purple-500 text-white rounded-full flex items-center justify-center font-bold hover:scale-110 transition-transform duration-200"
+                  className="w-8 h-8 bg-gradient-to-r from-[#1c57db] to-[#1b88d8] text-white rounded-full flex items-center justify-center font-bold hover:scale-110 transition-transform duration-200"
                   title="O que é isso?"
                 >
                   ?
                 </button>
               </label>
               <select
-                className="w-full p-4 border-2 border-indigo-200 rounded-xl focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all duration-200 text-lg bg-white"
+                className="w-full p-4 border-2 border-[#1c57db]/30 rounded-xl focus:border-[#1c57db] focus:ring-4 focus:ring-[#1c57db]/20 transition-all duration-200 text-lg bg-white"
                 value={proposito}
                 onChange={(e) => setProposito(e.target.value)}
               >
@@ -290,12 +290,12 @@ export default function Home() {
             {/* Formato */}
             <div className="space-y-3">
               <label className="text-xl font-bold text-gray-800 flex items-center gap-3">
-                <span className="bg-gradient-to-r from-teal-500 to-cyan-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#0cafe1] to-[#3ecfa6] bg-clip-text text-transparent">
                   📋 Formato
                 </span>
               </label>
               <select
-                className="w-full p-4 border-2 border-teal-200 rounded-xl focus:border-teal-500 focus:ring-4 focus:ring-teal-100 transition-all duration-200 text-lg bg-white"
+                className="w-full p-4 border-2 border-[#0cafe1]/30 rounded-xl focus:border-[#0cafe1] focus:ring-4 focus:ring-[#0cafe1]/20 transition-all duration-200 text-lg bg-white"
                 value={formato}
                 onChange={(e) => setFormato(e.target.value)}
               >
@@ -316,12 +316,12 @@ export default function Home() {
             {/* Detalhe */}
             <div className="space-y-3">
               <label className="text-xl font-bold text-gray-800 flex items-center gap-3">
-                <span className="bg-gradient-to-r from-rose-500 to-pink-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#3ecfa6] to-[#16bbc1] bg-clip-text text-transparent">
                   🔍 Nível de Detalhe
                 </span>
               </label>
               <select
-                className="w-full p-4 border-2 border-rose-200 rounded-xl focus:border-rose-500 focus:ring-4 focus:ring-rose-100 transition-all duration-200 text-lg bg-white"
+                className="w-full p-4 border-2 border-[#3ecfa6]/30 rounded-xl focus:border-[#3ecfa6] focus:ring-4 focus:ring-[#3ecfa6]/20 transition-all duration-200 text-lg bg-white"
                 value={detalhe}
                 onChange={(e) => setDetalhe(e.target.value)}
               >
@@ -340,12 +340,12 @@ export default function Home() {
             {/* Público */}
             <div className="space-y-3">
               <label className="text-xl font-bold text-gray-800 flex items-center gap-3">
-                <span className="bg-gradient-to-r from-violet-500 to-purple-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#16bbc1] to-[#1c57db] bg-clip-text text-transparent">
                   👥 Público-Alvo
                 </span>
               </label>
               <select
-                className="w-full p-4 border-2 border-violet-200 rounded-xl focus:border-violet-500 focus:ring-4 focus:ring-violet-100 transition-all duration-200 text-lg bg-white"
+                className="w-full p-4 border-2 border-[#16bbc1]/30 rounded-xl focus:border-[#16bbc1] focus:ring-4 focus:ring-[#16bbc1]/20 transition-all duration-200 text-lg bg-white"
                 value={publico}
                 onChange={(e) => setPublico(e.target.value)}
               >
@@ -367,7 +367,7 @@ export default function Home() {
           {/* Generate Button */}
           <div className="text-center mb-8">
             <button
-              className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white text-2xl font-black px-12 py-6 rounded-2xl hover:scale-105 hover:shadow-2xl transition-all duration-300 transform"
+              className="bg-gradient-to-r from-[#1b88d8] via-[#0cafe1] to-[#3ecfa6] text-white text-2xl font-black px-12 py-6 rounded-2xl hover:scale-105 hover:shadow-2xl transition-all duration-300 transform"
               onClick={gerarPrompt}
             >
               ✨ Gerar Prompt Mágico ✨
@@ -376,17 +376,17 @@ export default function Home() {
 
           {/* Generated Prompt Display */}
           {prompt && (
-            <div className="bg-gradient-to-r from-emerald-50 to-cyan-50 border-2 border-emerald-200 rounded-2xl p-8 shadow-lg">
-              <h2 className="text-3xl font-black text-emerald-800 mb-6 flex items-center gap-3">
+            <div className="bg-gradient-to-r from-[#3ecfa6]/10 to-[#16bbc1]/10 border-2 border-[#3ecfa6]/30 rounded-2xl p-8 shadow-lg">
+              <h2 className="text-3xl font-black text-[#1c57db] mb-6 flex items-center gap-3">
                 🚀 Seu Prompt Está Pronto!
               </h2>
-              <div className="bg-white rounded-xl p-6 shadow-inner border border-emerald-100">
+              <div className="bg-white rounded-xl p-6 shadow-inner border border-[#3ecfa6]/20">
                 <pre className="text-gray-800 text-lg leading-relaxed whitespace-pre-wrap font-mono">{prompt}</pre>
               </div>
               <div className="mt-6 text-center">
                 <button
                   onClick={() => navigator.clipboard.writeText(prompt)}
-                  className="bg-emerald-500 text-white font-bold px-6 py-3 rounded-xl hover:bg-emerald-600 transition-colors duration-200"
+                  className="bg-gradient-to-r from-[#3ecfa6] to-[#16bbc1] text-white font-bold px-6 py-3 rounded-xl hover:scale-105 transition-all duration-200"
                 >
                   📋 Copiar Prompt
                 </button>
@@ -400,7 +400,7 @@ export default function Home() {
       {modalAberto && (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-3xl p-8 max-w-lg w-full shadow-2xl transform animate-pulse">
-            <h2 className="text-3xl font-black mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <h2 className="text-3xl font-black mb-6 bg-gradient-to-r from-[#1b88d8] to-[#0cafe1] bg-clip-text text-transparent">
               {modalAberto === 'personalidade' && '🎭 O que é "Personalidade"?'}
               {modalAberto === 'tom' && '🎵 O que é "Tom"?'}
               {modalAberto === 'linguagem' && '💬 O que é "Linguagem"?'}
@@ -421,7 +421,7 @@ export default function Home() {
             </p>
             <button
               onClick={() => setModalAberto(null)}
-              className="bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold px-8 py-4 rounded-xl hover:scale-105 transition-all duration-200 w-full text-lg"
+              className="bg-gradient-to-r from-[#1b88d8] to-[#0cafe1] text-white font-bold px-8 py-4 rounded-xl hover:scale-105 transition-all duration-200 w-full text-lg"
             >
               Entendi! 👍
             </button>
